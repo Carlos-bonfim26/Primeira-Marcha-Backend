@@ -23,6 +23,14 @@ export const InstrutorSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+   cidade: {
+    type: String,
+    required: true,
+  },
+  UF: {
+    type: String,
+    required: true,
+  },
   cnh: {
     type: String,
     required: true,
@@ -32,16 +40,6 @@ export const InstrutorSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-  },
-  cnhPDF: {
-    type: Buffer,
-    required: true,
-    contentType: String,
-  },
-  credencialDetranPDF: {
-    type: Buffer,
-    required: true,
-    contentType: String,
   },
   valorAula: {
     type: Number,

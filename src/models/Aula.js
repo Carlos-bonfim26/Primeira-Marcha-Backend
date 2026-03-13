@@ -1,4 +1,4 @@
 import mongoose from "mongoose";
-import { AulaSchema } from "../Schemas/AulaSchema";
+import { AulaSchema } from "../Schemas/AulaSchema.js";
 
 export const Aula = mongoose.model("Aula", AulaSchema);
