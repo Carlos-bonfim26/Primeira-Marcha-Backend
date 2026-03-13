@@ -36,13 +36,18 @@ export const InstrutorSchema = new mongoose.Schema({
   cnhPDF: {
     type: Buffer,
     required: true,
+    contentType: String,
   },
   credencialDetranPDF: {
     type: Buffer,
     required: true,
+    contentType: String,
   },
   valorAula: {
     type: Number,
     required: true,
   },
+  statusInstrutor:{
+    type: String
+  }
 });
