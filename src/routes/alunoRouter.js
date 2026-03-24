@@ -4,5 +4,5 @@ import { cadastroAluno } from "../controllers/AlunoController.js";
 
 export const alunoRouter = Router();
 
-alunoRouter.post("/cadastro", cadastroAluno)
+alunoRouter.post("/aluno", cadastroAluno)
 
