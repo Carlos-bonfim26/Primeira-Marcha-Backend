@@ -1,6 +1,9 @@
 import bcrypt from "bcrypt";
 import { Instrutor } from "../models/Instrutor.js";
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+import jwt from "jsonwebtoken";
 export const cadastroInstrutor = async (req, res) => {
   const {
     nome,
@@ -178,10 +181,10 @@ export const aprovarInstrutor = async (req, res) => {
     }
 
     const response = await axios.get(
-      `https://data-instrutores-api.vercel.app/instrutores?${cpf}`,
+      `https://data-instrutores-api.vercel.app/instrutores?cpf=${cpf}`,
     );
     const instrutorData = response.data;
-console.log(instrutorData);
+    console.log(instrutorData);
     const instrutorValido = instrutorData.find((inst) => inst["CPF"] === cpf);
     if (!instrutorValido) {
       return res
@@ -198,12 +201,10 @@ console.log(instrutorData);
         .status(404)
         .json({ msg: "Instrutor não encontrado no sistema para aprovação" });
     }
-    res
-      .status(200)
-      .json({
-        msg: "Instrutor aprovado com sucesso",
-        instrutor: instrutorAtualizado,
-      });
+    res.status(200).json({
+      msg: "Instrutor aprovado com sucesso",
+      instrutor: instrutorAtualizado,
+    });
   } catch (error) {
     res.status(500).json({ msg: "Erro ao aprovar instrutor" });
     console.error(error);
@@ -236,14 +237,53 @@ export const aprovarInstrutorInterno = async (cpf) => {
         .status(404)
         .json({ msg: "Instrutor não encontrado no sistema para aprovação" });
     }
-    res
-      .status(200)
-      .json({
-        msg: "Instrutor aprovado com sucesso",
-        instrutor: instrutorAtualizado,
-      });
+    res.status(200).json({
+      msg: "Instrutor aprovado com sucesso",
+      instrutor: instrutorAtualizado,
+    });
   } catch (error) {
     res.status(500).json({ msg: "Erro ao aprovar instrutor" });
     console.error(error);
+  }
+};
+export const loginInstrutor = async (req, res) => {
+  try {
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+      return res.status(422).json({ msg: "Preencha todos os campos" });
+    }
+
+    const instrutor = await Instrutor.findOne({ email });
+
+    if (!instrutor) {
+      return res.status(404).json({ msg: "Instrutor não encontrado" });
+    }
+
+    const senhaValida = await bcrypt.compare(senha, instrutor.senha);
+
+    if (!senhaValida) {
+      return res.status(401).json({ msg: "Senha incorreta" });
+    }
+
+    const token = jwt.sign(
+      { id: instrutor._id, email: instrutor.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" },
+    );
+
+    return res.status(200).json({
+      msg: "Login bem-sucedido",
+      instrutor: {
+        id: instrutor._id,
+        nome: instrutor.nome,
+        email: instrutor.email,
+        statusInstrutor: instrutor.statusInstrutor,
+      },
+      token,
+    });
+  } catch (error) {
+    console.error("ERRO NO LOGIN:", error);
+    return res.status(500).json({ msg: "Erro ao realizar login" });
   }
 };

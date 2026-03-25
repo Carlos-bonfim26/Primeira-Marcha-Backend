@@ -9,17 +9,21 @@ import {
   deletarInstrutor,
   buscarInstrutorPorCidade,
   buscarInstrutorPorId,
-  aprovarInstrutor
+  aprovarInstrutor,
+  loginInstrutor
 } from "../controllers/InstrutorController.js";
-
+import { authMiddleware } from "../middleware/auth.js";
 export const instrutorRouter = Router();
-
+// rotas públicas
 instrutorRouter.post("/instrutor", cadastroInstrutor);
-instrutorRouter.get("/instrutores", listarInstrutores);
-instrutorRouter.put("/instrutor/:id", atualizarInstrutor);
-instrutorRouter.patch("/instrutor/:id/status", atualizarStatusInstrutor);
-instrutorRouter.patch("/instrutor/:id/valor-aula", atualizarValorAula);
-instrutorRouter.delete("/instrutor/:id", deletarInstrutor);
-instrutorRouter.get("/instrutor/:id", buscarInstrutorPorId);
-instrutorRouter.get("/instrutores/cidade/:cidade", buscarInstrutorPorCidade);
-instrutorRouter.patch("/instrutor/aprovar/:cpf", aprovarInstrutor);
+instrutorRouter.post("/instrutor/login", loginInstrutor);
+
+// rotas protegidas
+instrutorRouter.get("/instrutores",authMiddleware, listarInstrutores);
+instrutorRouter.put("/instrutor/:id", authMiddleware, atualizarInstrutor);
+instrutorRouter.patch("/instrutor/:id/status", authMiddleware, atualizarStatusInstrutor);
+instrutorRouter.patch("/instrutor/:id/valor-aula", authMiddleware, atualizarValorAula);
+instrutorRouter.delete("/instrutor/:id", authMiddleware, deletarInstrutor);
+instrutorRouter.get("/instrutor/:id", authMiddleware, buscarInstrutorPorId);
+instrutorRouter.get("/instrutores/cidade/:cidade", authMiddleware, buscarInstrutorPorCidade);
+instrutorRouter.patch("/instrutor/aprovar/:cpf", authMiddleware, aprovarInstrutor);
