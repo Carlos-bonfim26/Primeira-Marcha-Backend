@@ -1,14 +1,18 @@
 import { Router } from "express";
-
-import { cadastroAluno } from "../controllers/AlunoController.js";
+import {
+    cadastroAluno,
+    atualizarAluno,
+    deletarAluno,
+    loginAluno,
+    buscarAluno
+} from "../controllers/alunoController.js";
+import { authMiddleware } from "../middleware/auth.js";
 
 export const alunoRouter = Router();
 
-/**
- * @swagger
- * /aluno:
- *   post:
- *     summary: Cadastra um novo aluno
- */
-alunoRouter.post("/aluno", cadastroAluno)
+alunoRouter.post("/aluno", cadastroAluno);
+alunoRouter.post("/aluno/login", loginAluno);
 
+alunoRouter.get("/aluno/:id", authMiddleware, buscarAluno);
+alunoRouter.put("/aluno/:id", authMiddleware, atualizarAluno);
+alunoRouter.delete("/aluno/:id", authMiddleware, deletarAluno);

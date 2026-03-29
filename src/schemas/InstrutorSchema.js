@@ -23,7 +23,7 @@ export const InstrutorSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-   cidade: {
+  cidade: {
     type: String,
     required: true,
   },
@@ -45,7 +45,7 @@ export const InstrutorSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  statusInstrutor:{
+  statusInstrutor: {
     type: String
   }
 });

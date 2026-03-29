@@ -4,8 +4,8 @@ import {
     atualizarAdministrador,
     deletarAdministrador,
     loginAdministrador,
-    buscarAdministrador         
-} from "../controllers/AdminstradorController.js";  
+    buscarAdministrador
+} from "../controllers/AdminstradorController.js";
 import { authMiddleware } from "../middleware/auth.js";
 
 export const administradorRouter = Router();
