@@ -1,28 +1,23 @@
 import jwt from "jsonwebtoken";
-import { Instrutor } from "../models/Instrutor.js";
 
-export const authMiddleware = async (req, res, next) => {
-  const authHeader = req.headers.authorization;
+export const authMiddleware = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ msg: "Token não fornecido" });
+  if (!token) {
+    return res.status(401).json({ msg: "Token não fornecido." });
   }
 
   try {
-    const token = authHeader.split(" ")[1];
+    const secret = process.env.JWT_SECRET;
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const verified = jwt.verify(token, secret);
 
-    const instrutor = await Instrutor.findOne({ email: decoded.email });
-
-    if (!instrutor) {
-      return res.status(401).json({ msg: "Usuário não encontrado" });
-    }
-
-    req.instrutor = instrutor;
+    req.user = verified;
 
     next();
   } catch (error) {
-    return res.status(401).json({ msg: "Token inválido ou expirado" });
+    console.log("Erro na validação do JWT:", error.message);
+    res.status(401).json({ msg: "Token inválido ou expirado!" });
   }
 };
