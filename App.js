@@ -6,6 +6,7 @@ import { connectDB } from "./src/config/db.js";
 import { alunoRouter } from "./src/routes/alunoRouter.js";
 import { instrutorRouter } from "./src/routes/InstrutorRouter.js";
 import { administradorRouter } from "./src/routes/administradorRouter.js";
+import { aulaRouter } from "./src/routes/aulaRouter.js";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./src/docs/swagger.js";
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(alunoRouter)
 app.use(instrutorRouter)
 app.use(administradorRouter)
+app.use(aulaRouter)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get("/", (req, res) => {
   res.status(200).json({ msg: "Passo inicial da primeira marcha" });
