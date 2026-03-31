@@ -10,6 +10,6 @@ export async function connectDB() {
     console.log("Banco conectado com sucesso");
   } catch (error) {
     console.error("Erro ao conectar no banco:", error);
-    process.exit(1);
+    throw error; 
   }
 }

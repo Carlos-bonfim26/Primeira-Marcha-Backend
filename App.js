@@ -24,7 +24,7 @@ app.use(alunoRouter)
 app.use(instrutorRouter)
 app.use(administradorRouter)
 app.use(aulaRouter)
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get("/", (req, res) => {
   res.status(200).json({ msg: "Passo inicial da primeira marcha" });
 });
