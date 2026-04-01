@@ -5,7 +5,7 @@ import {
     deletarAluno,
     loginAluno,
     buscarAluno
-} from "../controllers/alunoController.js";
+} from "../controllers/AlunoController.js";
 import { authMiddleware } from "../middleware/auth.js";
 
 export const alunoRouter = Router();

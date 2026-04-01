@@ -26,7 +26,7 @@ app.use(administradorRouter)
 app.use(aulaRouter)
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get("/", (req, res) => {
-  res.status(200).json({ msg: "Passo inicial da primeira marcha" });
+res.status(200).json({ msg: "Passo inicial da primeira marcha" });
 });
 
 export default app;

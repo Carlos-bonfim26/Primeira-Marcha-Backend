@@ -5,7 +5,7 @@ import {
     deletarAdministrador,
     loginAdministrador,
     buscarAdministrador
-} from "../controllers/AdminstradorController.js";
+} from "../controllers/AdministradorController.js";
 import { authMiddleware } from "../middleware/auth.js";
 
 export const administradorRouter = Router();

@@ -96,7 +96,7 @@ export const deletarInstrutor = async (req, res) => {
 export const buscarInstrutorPorId = async (req, res) => {
   const { id } = req.params;
   try {
-    const instrutor = await Instrutor.findById(id);
+    const instrutor = await Instrutor.findById(id).select("-senha");;
     if (!instrutor) {
       return res.status(404).json({ msg: "Instrutor não encontrado" });
     }
