@@ -69,8 +69,8 @@ export const deletarAdministrador = async (req, res) => {
 export const buscarAdministrador = async (req, res) => {
   const { id } = req.params;
   try {
-    const admin = await Administrador.findById(id);
-    if (!admin) {
+    const admin = await Administrador.findById(id).select("-senha");
+        if (!admin) {
       return res.status(404).json({ msg: "Administrador não encontrado" });
     }
     res.status(200).json(admin);

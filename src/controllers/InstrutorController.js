@@ -55,7 +55,7 @@ export const cadastroInstrutor = async (req, res) => {
 };
 export const listarInstrutores = async (req, res) => {
   try {
-    const instrutores = await Instrutor.find();
+    const instrutores = await Instrutor.find().select("-senha");
     res.status(200).json(instrutores);
   } catch (error) {
     res.status(500).json({ msg: "Erro ao listar instrutores" });
@@ -96,7 +96,7 @@ export const deletarInstrutor = async (req, res) => {
 export const buscarInstrutorPorId = async (req, res) => {
   const { id } = req.params;
   try {
-    const instrutor = await Instrutor.findById(id);
+    const instrutor = await Instrutor.findById(id).select("-senha");
     if (!instrutor) {
       return res.status(404).json({ msg: "Instrutor não encontrado" });
     }
@@ -109,7 +109,7 @@ export const buscarInstrutorPorId = async (req, res) => {
 export const buscarInstrutorPorCidade = async (req, res) => {
   const { cidade } = req.params;
   try {
-    const instrutores = await Instrutor.find({ cidade: cidade });
+    const instrutores = await Instrutor.find({ cidade: cidade }).select("-senha");
     res.status(200).json(instrutores);
   } catch (error) {
     res.status(500).json({ msg: "Erro ao buscar instrutores por cidade" });

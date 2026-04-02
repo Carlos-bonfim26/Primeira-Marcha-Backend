@@ -1,3 +1,4 @@
 import mongoose from "mongoose";
-import { AlunoSchema } from "../schemas/AlunoSchema.js";
+import { AlunoSchema } from "../Schemas/AlunoSchema.Js";
+
 export const Aluno = mongoose.model("Aluno", AlunoSchema);
