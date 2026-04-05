@@ -1,4 +1,9 @@
 import swaggerJSDoc from "swagger-jsdoc";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const options = {
   definition: {
@@ -13,8 +18,17 @@ const options = {
         url: "https://primeira-marcha-backend.vercel.app",
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
-  apis: ["./src/routes/*.js"], // onde estão suas rotas
+  apis: [path.join(__dirname, "../routes/*.js")], // caminho absoluto
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
