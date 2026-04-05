@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
@@ -28,7 +27,10 @@ app.use(alunoRouter)
 app.use(instrutorRouter)
 app.use(administradorRouter)
 app.use(aulaRouter)
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.get("/", (req, res) => {
   res.status(200).json({ msg: "Passo inicial da primeira marcha" });
 });

@@ -10,11 +10,11 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "https://primeira-marcha-backend.vercel.app/",
       },
     ],
   },
-  apis: ["../routes/*.js"], // onde estão suas rotas
+  apis: ["./src/routes/*.js"], // onde estão suas rotas
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
