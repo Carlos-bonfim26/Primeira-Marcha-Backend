@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://primeira-marcha-backend.vercel.app/",
+        url: "https://primeira-marcha-backend.vercel.app",
       },
     ],
   },
