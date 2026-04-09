@@ -5,6 +5,7 @@ import {
   deletarAluno,
   loginAluno,
   buscarAluno,
+    buscarAlunoPorCPF,
 } from "../controllers/AlunoController.js";
 import { authMiddleware } from "../middleware/auth.js";
 
@@ -175,3 +176,29 @@ alunoRouter.put("/aluno/:id", authMiddleware, atualizarAluno);
  *         description: Aluno não encontrado
  */
 alunoRouter.delete("/aluno/:id", authMiddleware, deletarAluno);
+/**
+ * @swagger
+ * /aluno/cpf/{cpf}:
+ *   get:
+ *    summary: Busca um aluno pelo CPF
+ *   tags: [Aluno]
+ *    security:
+ *      - bearerAuth: []
+ *    parameters:
+ *     - in: path
+ *      name: cpf
+ *    required: true
+ *    schema:
+ *      type: string
+ *      example: "111.222.333-44"
+ *    description: CPF do aluno
+ *     responses:
+ *       200:
+ *         description: Aluno encontrado
+ *       401:
+ *         description: Não autorizado
+ *       404:
+ *         description: Aluno não encontrado
+
+ */
+alunoRouter.get("/aluno/cpf/:cpf", authMiddleware, buscarAlunoPorCPF);

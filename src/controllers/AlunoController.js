@@ -84,6 +84,18 @@ export const buscarAluno = async (req, res) => {
         res.status(500).json({ msg: "Erro ao buscar aluno" });
     }
 };
+export const buscarAlunoPorCPF = async (req, res) => {
+    const { cpf } = req.params;
+    try {
+        const aluno = await Aluno.findOne({ cpf }).select("-senha"); // Remove a senha do retorno por segurança
+        if (!aluno) {
+            return res.status(404).json({ msg: "Aluno não encontrado" });
+        }
+        res.status(200).json(aluno);
+    } catch (error) {
+        res.status(500).json({ msg: "Erro ao buscar aluno" });
+    }
+};
 
 export const loginAluno = async (req, res) => {
     const { email, senha } = req.body;
