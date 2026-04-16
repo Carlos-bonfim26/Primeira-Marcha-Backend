@@ -43,12 +43,14 @@ Plataforma que conecta **instrutores autônomos de autoescola** a **estudantes**
 **Pré-requisitos:** Node.js 18+ e uma instância do MongoDB (local ou Atlas)
 
 **1. Clone o repositório**
+
 ```bash
 git clone https://github.com/Carlos-bonfim26/Primeira-Marcha-Backend.git
 cd Primeira-Marcha-Backend
 ```
 
 **2. Instale as dependências**
+
 ```bash
 npm install
 ```
@@ -56,12 +58,14 @@ npm install
 **3. Configure as variáveis de ambiente**
 
 Crie um arquivo `.env` na raiz do projeto:
+
 ```env
 MONGODB_URI=sua_string_de_conexao_mongodb
 JWT_SECRET=seu_secret_jwt
 ```
 
 **4. Inicie o servidor**
+
 ```bash
 npm run dev
 ```
@@ -80,13 +84,32 @@ Authorization: Bearer <seu_token>
 
 ---
 
+## 👨‍💻Desenvolvedores
+
+ <div style="display:flex; gap:1rem;">
+     <div style="display:flex; flex-direction:column;">
+     <img src="https://github.com/Carlos-bonfim26.png?size=200" width=180>
+     <a href="https://www.linkedin.com/in/carlosbonfim26/" target="_blank" style="font-size: 1.5rem">Carlos Bonfim</a>
+     </div>
+       <div style="display:flex; flex-direction:column;">
+          <img src="https://github.com/Joaquim-NL.png?size=115" width=180>
+           <a href="https://www.linkedin.com/in/guilherme-nunes-a7415b2ba/" target="_blank"style="font-size: 1.5rem">Joaquim Guilherme</a>
+           </div>
+           <div style="display:flex; flex-direction:column;">
+          <img src="https://github.com/caiGon1.png?size=115" width=180>
+           <a href="https://www.linkedin.com/in/caio-gon%C3%A7alves-ananias-da-silva-446b261b8/" target="_blank"style="font-size: 1.5rem">Caio Gonçalves</a>
+           </div>
+ </div>
+ 
+ ---
+
 ## 📦 Módulos da API
 
-| Módulo | Descrição |
-|---|---|
-| **Instrutor** | Cadastro, login, busca por cidade, aprovação e gerenciamento de instrutores |
-| **Aluno** | Cadastro, login e gerenciamento de alunos |
-| **Aula** | Agendamento, cancelamento, reagendamento e controle de status das aulas |
-| **Administrador** | Gerenciamento administrativo da plataforma |
+| Módulo            | Descrição                                                                   |
+| ----------------- | --------------------------------------------------------------------------- |
+| **Instrutor**     | Cadastro, login, busca por cidade, aprovação e gerenciamento de instrutores |
+| **Aluno**         | Cadastro, login e gerenciamento de alunos                                   |
+| **Aula**          | Agendamento, cancelamento, reagendamento e controle de status das aulas     |
+| **Administrador** | Gerenciamento administrativo da plataforma                                  |
 
 Para detalhes de cada endpoint (parâmetros, body, respostas), consulte a [documentação Swagger](https://primeira-marcha-backend.vercel.app/api-docs/).
