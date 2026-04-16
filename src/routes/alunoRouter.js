@@ -176,6 +176,7 @@ alunoRouter.put("/aluno/:id", authMiddleware, atualizarAluno);
  *         description: Aluno não encontrado
  */
 alunoRouter.delete("/aluno/:id", authMiddleware, deletarAluno);
+
 /**
  * @swagger
  * /aluno/cpf/{cpf}:
