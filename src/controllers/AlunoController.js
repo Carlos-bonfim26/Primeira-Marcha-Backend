@@ -30,7 +30,7 @@ export const cadastroAluno = async (req, res) => {
     })
     try {
         await aluno.save();
-        res.status(201).json({ msg: "Usuário cadastrado com sucesso" });
+        res.status(201).json({ msg: "Usuário cadastrado com sucesso" }, aluno);
     } catch (error) {
         res.status(500).json({ msg: "Não foi possível cadastrar o usuário, tente novamente mais tarde" });
     }
