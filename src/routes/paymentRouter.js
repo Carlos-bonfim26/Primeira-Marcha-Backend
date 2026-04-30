@@ -7,7 +7,7 @@ export const paymentRouter = Router();
 /**
  * @swagger
  * /create-preference:
- *   get:
+ *   post:
  *     summary: Cria uma preferência de pagamento no Mercado Pago
  *     tags: [Pagamento]
  *     security:
@@ -48,7 +48,7 @@ export const paymentRouter = Router();
  *       500:
  *         description: Erro interno ao criar preferência de pagamento
  */
-paymentRouter.get("/create-preference", authMiddleware, async (req, res) => {
+paymentRouter.post("/create-preference", authMiddleware, async (req, res) => {
   await createPreference(req, res);
 });
 
